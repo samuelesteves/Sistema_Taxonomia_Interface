@@ -19,12 +19,14 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
     
     boolean modoAlterarDeletar = false;
     
-    String id = "";
+    String cod = "";
     
     int indiceLista = 0;
     
     public frmCadastUsu() {
+        
         lstUsuario = new ArrayList<Usuario>();
+        
         initComponents();
        
 
@@ -57,29 +59,18 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Cadastro de Usuário");
         setToolTipText("");
-        getContentPane().setLayout(null);
 
         jLabel1.setText("Nome Usuário:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 40, 90, 16);
-        getContentPane().add(txtNomeUsu);
-        txtNomeUsu.setBounds(100, 40, 240, 30);
 
         jLabel3.setText("CPF:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(370, 40, 40, 16);
 
         try {
             txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(txtCpf);
-        txtCpf.setBounds(420, 40, 190, 30);
 
         jLabel4.setText("Área:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(50, 80, 40, 16);
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,28 +97,19 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabelaUsuario);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 130, 760, 190);
-
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(260, 340, 72, 22);
 
-        btnExcluir.setText("Excluir");
+        btnExcluir.setText("Deletar");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExcluir);
-        btnExcluir.setBounds(350, 340, 72, 22);
-        getContentPane().add(txtArea);
-        txtArea.setBounds(100, 80, 250, 30);
 
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -135,8 +117,57 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
                 btnNovoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovo);
-        btnNovo.setBounds(440, 340, 72, 22);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btnExcluir)
+                .addGap(21, 21, 21)
+                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(txtNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnNovo)))
+        );
 
         setBounds(0, 0, 794, 408);
     }// </editor-fold>//GEN-END:initComponents
@@ -145,23 +176,25 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
        
         
         
-         String idUsuario = "";
+         String codUsuario = "";
         
          if (this.modoAlterarDeletar == true) {
-            idUsuario = this.id;
+            codUsuario = this.cod;
 
         } else {
-            idUsuario = java.util.UUID.randomUUID().toString();
+            codUsuario = java.util.UUID.randomUUID().toString();
         }
          
-         Usuario usuario = new Usuario(idUsuario,txtNomeUsu.getText(),
+         Usuario usuario = new Usuario(codUsuario,txtNomeUsu.getText(),
                txtCpf.getText(),txtArea.getText());
          
-         this.LimparCampos();
+         this.modoNovo();
+         
         
         if (this.modoAlterarDeletar == true) {
-            //ALTERO O VALOR NA POSIÇÃO DA LISTA
+            
             lstUsuario.set(this.indiceLista, usuario);
+            
             btnNovo.setEnabled(true);
 
         } else {
@@ -169,7 +202,7 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         }        
         this.modoAlterarDeletar = false;
         
-        this.CarregarTabela();
+        this.carregarTabela();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -181,42 +214,39 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
 
             lstUsuario.remove(this.indiceLista);
 
-            this.CarregarTabela();
+            this.carregarTabela();
 
         }
         
-        this.LimparCampos();
+        this.modoNovo();
         
         btnNovo.setEnabled(true);
+        
         
         
          
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jScrollPane1MouseClicked
 
     private void tabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuarioMouseClicked
         this.modoAlterarDeletar = true;
 
-        //PEGA A LINHA SELECIONADA
         int row = this.tabelaUsuario.getSelectedRow();
-
-        //RECUPERA O VALOr DA COLUNA ID ESTA NA 0
-        String idUsuario = (String) this.tabelaUsuario.getValueAt(row, 0);
-
-        //GUARDA O ID PARA ALTERAR/REMOVER
-        this.id = idUsuario;
+        
+        String codUsuario = (String) this.tabelaUsuario.getValueAt(row, 0);
+       
+        this.cod = codUsuario;
 
         int indice = 0;
-
-        //RECUPERAR POR ID
+        
         Usuario usuario = null;
 
         for (int i = 0; i < lstUsuario.size(); i++) {
 
-            if (lstUsuario.get(i).getCodUsuario().equals(idUsuario)) {
+            if (lstUsuario.get(i).getCodUsuario().equals(codUsuario)) {
 
                 usuario = lstUsuario.get(i);
                 indice = i;
@@ -230,21 +260,21 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         txtCpf.setText(usuario.getCpf());
         txtArea.setText(usuario.getArea());
         
-        this.habilitarCampos();
-        
-        btnSalvar.setEnabled(true);
+            this.habilitarCampos();
             
-        btnNovo.setEnabled(false);
+            btnSalvar.setEnabled(true);
             
-        btnExcluir.setEnabled(true);
+            btnNovo.setEnabled(false);
+            
+            btnExcluir.setEnabled(true);
     }//GEN-LAST:event_tabelaUsuarioMouseClicked
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        this.modoAlterarDeletar = false;
+         this.modoAlterarDeletar = false;
         
-        this.LimparCampos();
+        this.modoNovo();
         
-        this.CarregarTabela();
+        this.carregarTabela();
         
         this.habilitarCampos();
         
@@ -252,7 +282,7 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
 
-    private void CarregarTabela(){
+    private void carregarTabela(){
         
         DefaultTableModel model = (DefaultTableModel) tabelaUsuario.getModel();
 
@@ -272,11 +302,10 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
          tabelaUsuario.setModel(model);
     }
     
-    private void LimparCampos(){
-        
+    private void modoNovo(){
         
         txtNomeUsu.setText("");
-        txtCpf.setText("");
+        txtCpf.setText(""); 
         txtArea.setText("");
         
         txtNomeUsu.setEnabled(false);
@@ -287,12 +316,13 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         btnExcluir.setEnabled(false);
     }
     
-     private void habilitarCampos() {
+    private void habilitarCampos() {
+       
         txtNomeUsu.setEnabled(true);
         txtCpf.setEnabled(true);
         txtArea.setEnabled(true);
-     }
-    
+        
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcluir;
