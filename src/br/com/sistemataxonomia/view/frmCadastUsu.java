@@ -23,6 +23,8 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
     public frmCadastUsu() {
         lstUsuario = new ArrayList<Usuario>();
         initComponents();
+       
+
     }
 
     /**
@@ -225,7 +227,8 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
 
     private void CarregarTabela(){
         
-         DefaultTableModel model = (DefaultTableModel) tabelaUsuario.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabelaUsuario.getModel();
+
          
          model.setRowCount(0);
          

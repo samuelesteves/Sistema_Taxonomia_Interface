@@ -9,7 +9,7 @@ public class Laboratorio {
     
    
     
-    private int cod;
+    private String cod;
     private String nome;
     private Endereco endereco;
     private String cnpj;
@@ -20,7 +20,7 @@ public class Laboratorio {
         
     }
     
-     public Laboratorio(int cod, String nome, Endereco endereco, String cnpj, String areaDePesquisa, String telefone) {
+     public Laboratorio(String cod, String nome, Endereco endereco, String cnpj, String areaDePesquisa, String telefone) {
         this.cod = cod;
         this.nome = nome;
         this.endereco = endereco;
@@ -29,11 +29,11 @@ public class Laboratorio {
         this.telefone = telefone;
     }
     
-    public int getCod() {
+    public String getCod() {
         return cod;
     }
 
-    public void setCod(int cod) {
+    public void setCod(String cod) {
         this.cod = cod;
     }
 
