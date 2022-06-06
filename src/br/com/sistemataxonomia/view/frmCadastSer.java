@@ -4,16 +4,23 @@
  */
 package br.com.sistemataxonomia.view;
 
+import br.com.sistemataxonomia.modelo.SeresVivos;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author samuel
  */
 public class frmCadastSer extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form frmCadastSer
-     */
+    ArrayList<SeresVivos> lstSeresVivos;
+    boolean modoAlterarDeletar = false;
+    String id = "";
+    int indiceLista = 0;
+   
     public frmCadastSer() {
+        lstSeresVivos = new ArrayList<SeresVivos>();
         initComponents();
     }
 
@@ -26,6 +33,29 @@ public class frmCadastSer extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtCodSerVvo = new javax.swing.JLabel();
+        txtCodSeresVivos = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtReino = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtFilo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtClasse = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtOrdem = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtFamilia = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtGenero = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtEspecie = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtNomeComum = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaSeresVivos = new javax.swing.JTable();
+        btnInserir = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -33,10 +63,237 @@ public class frmCadastSer extends javax.swing.JInternalFrame {
         setTitle("Cadastro de Ser Vivo");
         getContentPane().setLayout(null);
 
-        setBounds(0, 0, 410, 308);
+        txtCodSerVvo.setText("Cod. Seres Vivos: ");
+        getContentPane().add(txtCodSerVvo);
+        txtCodSerVvo.setBounds(10, 10, 100, 16);
+        getContentPane().add(txtCodSeresVivos);
+        txtCodSeresVivos.setBounds(10, 30, 40, 22);
+
+        jLabel2.setText("Reino: ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(170, 10, 37, 16);
+        getContentPane().add(txtReino);
+        txtReino.setBounds(170, 30, 140, 30);
+
+        jLabel1.setText("Filo:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(340, 10, 30, 16);
+        getContentPane().add(txtFilo);
+        txtFilo.setBounds(340, 30, 140, 30);
+
+        jLabel3.setText("Classe:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(500, 10, 36, 16);
+        getContentPane().add(txtClasse);
+        txtClasse.setBounds(500, 30, 140, 30);
+
+        jLabel4.setText("Ordem:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 70, 50, 16);
+        getContentPane().add(txtOrdem);
+        txtOrdem.setBounds(10, 90, 140, 30);
+
+        jLabel5.setText("Família: ");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(170, 70, 50, 16);
+        getContentPane().add(txtFamilia);
+        txtFamilia.setBounds(170, 90, 140, 30);
+
+        jLabel6.setText("Genero:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(340, 70, 50, 16);
+        getContentPane().add(txtGenero);
+        txtGenero.setBounds(340, 90, 140, 30);
+
+        jLabel7.setText("Espécie: ");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(500, 70, 50, 16);
+        getContentPane().add(txtEspecie);
+        txtEspecie.setBounds(500, 90, 140, 30);
+
+        jLabel8.setText("Nome Comum: ");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(10, 130, 90, 16);
+        getContentPane().add(txtNomeComum);
+        txtNomeComum.setBounds(10, 150, 140, 30);
+
+        tabelaSeresVivos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cod. Ser Vivo", "Reino", "Filo", "Classe", "Ordem", "Família", "Genero", "Espécie", "Nome Comum"
+            }
+        ));
+        tabelaSeresVivos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaSeresVivosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaSeresVivos);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 200, 770, 200);
+
+        btnInserir.setText("Inserir");
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInserir);
+        btnInserir.setBounds(210, 420, 72, 22);
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(330, 420, 72, 22);
+
+        setBounds(0, 0, 806, 569);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        SeresVivos seresVivos = new SeresVivos(txtCodSeresVivos.getText(),txtReino.getText(),
+               txtFilo.getText(),txtClasse.getText(),txtOrdem.getText(),txtFamilia.getText()
+                ,txtGenero.getText(),txtEspecie.getText(),txtNomeComum.getText());
+        
+     if (this.modoAlterarDeletar == true) {
+            //ALTERO O VALOR NA POSIÇÃO DA LISTA
+            lstSeresVivos.set(this.indiceLista, seresVivos);
+            
 
+        } else {
+            lstSeresVivos.add(seresVivos);
+        }        
+        this.modoAlterarDeletar = false;
+        this.LimparCampos();
+        this.CarregarTabela();
+    }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int input = JOptionPane.showConfirmDialog(null,
+                "Deseja realmente excluir?", "Atenção!!!", JOptionPane.YES_NO_OPTION);
+
+        if (input == 0) {
+
+            lstSeresVivos.remove(this.indiceLista);
+
+            this.CarregarTabela();
+
+        }
+        btnInserir.setEnabled(true);
+        this.LimparCampos();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void tabelaSeresVivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaSeresVivosMouseClicked
+        this.modoAlterarDeletar = true;
+
+        //PEGA A LINHA SELECIONADA
+        int row = this.tabelaSeresVivos.getSelectedRow();
+
+        //RECUPERA O VALOr DA COLUNA ID ESTA NA 0
+        String idSeresVivos = (String) this.tabelaSeresVivos.getValueAt(row, 0);
+
+        //GUARDA O ID PARA ALTERAR/REMOVER
+        this.id = idSeresVivos;
+
+        int indice = 0;
+
+        //RECUPERAR POR ID
+        SeresVivos seresVivos = null;
+
+        for (int i = 0; i < lstSeresVivos.size(); i++) {
+
+            if (lstSeresVivos.get(i).getCodSeresVivos().equals(idSeresVivos)) {
+
+                seresVivos = lstSeresVivos.get(i);
+                indice = i;
+                break;
+            }
+        }
+
+        this.indiceLista = indice;
+        txtCodSeresVivos.setText(seresVivos.getCodSeresVivos());
+        txtReino.setText(seresVivos.getReino());
+        txtFilo.setText(seresVivos.getFilo());
+        txtClasse.setText(seresVivos.getClasse());
+        txtOrdem.setText(seresVivos.getOrdem());
+        txtFamilia.setText(seresVivos.getFamilia());
+        txtGenero.setText(seresVivos.getGenero());
+        txtEspecie.setText(seresVivos.getEspecie());
+        txtNomeComum.setText(seresVivos.getNomeComum());
+                
+        
+    }//GEN-LAST:event_tabelaSeresVivosMouseClicked
+
+
+     private void CarregarTabela(){
+        
+         DefaultTableModel model = (DefaultTableModel) tabelaSeresVivos.getModel();
+         
+         model.setRowCount(0);
+         
+         for(SeresVivos seresVivos : lstSeresVivos){
+             
+             model.addRow(new Object []{
+                seresVivos.getCodSeresVivos(),
+                seresVivos.getReino(),
+                seresVivos.getFilo(),
+                seresVivos.getClasse(),
+                seresVivos.getOrdem(),
+                seresVivos.getFamilia(),
+                seresVivos.getGenero(),
+                seresVivos.getEspecie(),
+                seresVivos.getNomeComum()
+             });
+         }
+         
+         tabelaSeresVivos.setModel(model);
+    }
+     
+     private void LimparCampos(){
+        
+        txtCodSeresVivos.setText("");
+        txtReino.setText("");
+        txtFilo.setText("");
+        txtClasse.setText("");
+        txtOrdem.setText("");
+        txtFamilia.setText("");
+        txtGenero.setText("");
+        txtEspecie.setText("");
+        txtNomeComum.setText("");
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnInserir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaSeresVivos;
+    private javax.swing.JTextField txtClasse;
+    private javax.swing.JLabel txtCodSerVvo;
+    private javax.swing.JTextField txtCodSeresVivos;
+    private javax.swing.JTextField txtEspecie;
+    private javax.swing.JTextField txtFamilia;
+    private javax.swing.JTextField txtFilo;
+    private javax.swing.JTextField txtGenero;
+    private javax.swing.JTextField txtNomeComum;
+    private javax.swing.JTextField txtOrdem;
+    private javax.swing.JTextField txtReino;
     // End of variables declaration//GEN-END:variables
 }

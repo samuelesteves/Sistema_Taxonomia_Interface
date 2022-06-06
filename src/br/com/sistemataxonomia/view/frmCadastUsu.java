@@ -136,10 +136,23 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
        
-        Usuario usuario = new Usuario(txtCodUsu.getText(),txtNomeUsu.getText(),
-               txtCpf.getText(),txtArea.getText());
         
-     if (this.modoAlterarDeletar == true) {
+        
+         String idUsuario = "";
+        
+         if (this.modoAlterarDeletar == true) {
+            idUsuario = this.id;
+
+        } else {
+            idUsuario = java.util.UUID.randomUUID().toString();
+        }
+         
+         Usuario usuario = new Usuario(idUsuario,txtNomeUsu.getText(),
+               txtCpf.getText(),txtArea.getText());
+         
+         this.LimparCampos();
+        
+        if (this.modoAlterarDeletar == true) {
             //ALTERO O VALOR NA POSIÇÃO DA LISTA
             lstUsuario.set(this.indiceLista, usuario);
             btnInserir.setEnabled(true);
@@ -148,7 +161,7 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
             lstUsuario.add(usuario);
         }        
         this.modoAlterarDeletar = false;
-        this.LimparCampos();
+        
         this.CarregarTabela();
     }//GEN-LAST:event_btnInserirActionPerformed
 
@@ -166,6 +179,8 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         }
         
         this.LimparCampos();
+        
+        
          
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -180,10 +195,10 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         int row = this.tabelaUsuario.getSelectedRow();
 
         //RECUPERA O VALOr DA COLUNA ID ESTA NA 0
-        String idCliente = (String) this.tabelaUsuario.getValueAt(row, 0);
+        String idUsuario = (String) this.tabelaUsuario.getValueAt(row, 0);
 
         //GUARDA O ID PARA ALTERAR/REMOVER
-        this.id = idCliente;
+        this.id = idUsuario;
 
         int indice = 0;
 
@@ -192,7 +207,7 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
 
         for (int i = 0; i < lstUsuario.size(); i++) {
 
-            if (lstUsuario.get(i).getCodUsuario().equals(idCliente)) {
+            if (lstUsuario.get(i).getCodUsuario().equals(idUsuario)) {
 
                 usuario = lstUsuario.get(i);
                 indice = i;

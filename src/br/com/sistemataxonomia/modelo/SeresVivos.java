@@ -2,7 +2,7 @@ package br.com.sistemataxonomia.modelo;
 import java.util.Scanner;
 
 public class SeresVivos {
-    Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in);   
     
     private String codSeresVivos;
     private String reino;
@@ -13,6 +13,21 @@ public class SeresVivos {
     private String genero;
     private String especie;
     private String nomeComum;
+    
+    public SeresVivos() {
+    }
+    
+    public SeresVivos(String codSeresVivos, String reino, String filo, String classe, String ordem, String familia, String genero, String especie, String nomeComum) {
+        this.codSeresVivos = codSeresVivos;
+        this.reino = reino;
+        this.filo = filo;
+        this.classe = classe;
+        this.ordem = ordem;
+        this.familia = familia;
+        this.genero = genero;
+        this.especie = especie;
+        this.nomeComum = nomeComum;
+    }
 
     public String getCodSeresVivos() {
         return codSeresVivos;
