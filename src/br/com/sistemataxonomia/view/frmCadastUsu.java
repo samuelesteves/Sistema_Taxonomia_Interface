@@ -16,8 +16,11 @@ import javax.swing.table.DefaultTableModel;
 public class frmCadastUsu extends javax.swing.JInternalFrame {
     
     ArrayList<Usuario> lstUsuario;
+    
     boolean modoAlterarDeletar = false;
+    
     String id = "";
+    
     int indiceLista = 0;
     
     public frmCadastUsu() {
@@ -38,16 +41,15 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtNomeUsu = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtCodUsu = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCpf = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaUsuario = new javax.swing.JTable();
-        btnInserir = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         txtArea = new javax.swing.JTextField();
+        btnNovo = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -62,12 +64,6 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         jLabel1.setBounds(10, 40, 90, 16);
         getContentPane().add(txtNomeUsu);
         txtNomeUsu.setBounds(100, 40, 240, 30);
-
-        jLabel2.setText("Cod.Usuário:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 10, 80, 16);
-        getContentPane().add(txtCodUsu);
-        txtCodUsu.setBounds(100, 10, 50, 22);
 
         jLabel3.setText("CPF:");
         getContentPane().add(jLabel3);
@@ -113,30 +109,39 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(10, 130, 760, 190);
 
-        btnInserir.setText("Inserir");
-        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInserirActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInserir);
-        btnInserir.setBounds(260, 340, 72, 22);
+        getContentPane().add(btnSalvar);
+        btnSalvar.setBounds(260, 340, 72, 22);
 
-        jButton2.setText("Deletar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(350, 340, 72, 22);
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(350, 340, 72, 22);
         getContentPane().add(txtArea);
         txtArea.setBounds(100, 80, 250, 30);
+
+        btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNovo);
+        btnNovo.setBounds(440, 340, 72, 22);
 
         setBounds(0, 0, 794, 408);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
        
         
         
@@ -157,7 +162,7 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         if (this.modoAlterarDeletar == true) {
             //ALTERO O VALOR NA POSIÇÃO DA LISTA
             lstUsuario.set(this.indiceLista, usuario);
-            btnInserir.setEnabled(true);
+            btnNovo.setEnabled(true);
 
         } else {
             lstUsuario.add(usuario);
@@ -165,9 +170,9 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         this.modoAlterarDeletar = false;
         
         this.CarregarTabela();
-    }//GEN-LAST:event_btnInserirActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
       
         int input = JOptionPane.showConfirmDialog(null,
                 "Deseja realmente excluir?", "Atenção!!!", JOptionPane.YES_NO_OPTION);
@@ -182,9 +187,11 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         
         this.LimparCampos();
         
+        btnNovo.setEnabled(true);
+        
         
          
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
         // TODO add your handling code here:
@@ -222,7 +229,27 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
         txtNomeUsu.setText(usuario.getNome());
         txtCpf.setText(usuario.getCpf());
         txtArea.setText(usuario.getArea());
+        
+        this.habilitarCampos();
+        
+        btnSalvar.setEnabled(true);
+            
+        btnNovo.setEnabled(false);
+            
+        btnExcluir.setEnabled(true);
     }//GEN-LAST:event_tabelaUsuarioMouseClicked
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        this.modoAlterarDeletar = false;
+        
+        this.LimparCampos();
+        
+        this.CarregarTabela();
+        
+        this.habilitarCampos();
+        
+        btnSalvar.setEnabled(true);
+    }//GEN-LAST:event_btnNovoActionPerformed
 
 
     private void CarregarTabela(){
@@ -247,24 +274,36 @@ public class frmCadastUsu extends javax.swing.JInternalFrame {
     
     private void LimparCampos(){
         
-        txtCodUsu.setText("");
+        
         txtNomeUsu.setText("");
         txtCpf.setText("");
         txtArea.setText("");
+        
+        txtNomeUsu.setEnabled(false);
+        txtCpf.setEnabled(false);
+        txtArea.setEnabled(false);
+        
+        btnSalvar.setEnabled(false);
+        btnExcluir.setEnabled(false);
     }
+    
+     private void habilitarCampos() {
+        txtNomeUsu.setEnabled(true);
+        txtCpf.setEnabled(true);
+        txtArea.setEnabled(true);
+     }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInserir;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaUsuario;
     private javax.swing.JTextField txtArea;
-    private javax.swing.JTextField txtCodUsu;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtNomeUsu;
     // End of variables declaration//GEN-END:variables
