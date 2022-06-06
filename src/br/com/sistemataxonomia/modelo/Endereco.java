@@ -3,6 +3,14 @@ package br.com.sistemataxonomia.modelo;
 
 
 public class Endereco {
+
+    public Endereco(String endereco, String estado, String numero, String bairro, String cep) {
+        this.endereco = endereco;
+        this.estado = estado;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cep = cep;
+    }
     
     private String endereco;
     private String estado;
